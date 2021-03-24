@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Index
+{% endblock title %}
+
+{% block extra_head %}
+    <style>
+        #mapid{
+            height: 1080px;
+        }
+    </style>
+{% endblock extra_head %}
+
+{% block content %}
+    <div id="mapid"></div>
+{% endblock content %}
+
+{% block extra_footer %}
+<script>
+    var mymap = L.map('mapid').setView([-6.2634471419164095, 106.75042622650905], 13);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoiZmlrYXJjaGFtaWlpaW0iLCJhIjoiY2ttbjE2dWc3MXFmaDJ2azVvY2JtMGE1MCJ9.wMqW24OqNms9mzEEp74mzg', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'sk.eyJ1IjoiZmlrYXJjaGFtaWlpaW0iLCJhIjoiY2ttbjE2dWc3MXFmaDJ2azVvY2JtMGE1MCJ9.wMqW24OqNms9mzEEp74mzg'
+}).addTo(mymap);
+
+    var polygon = L.polygon([
+        [-6.2634471419164095, 106.75042622650905],
+        [-6.263223181218389, 106.74264782099763],
+        [-6.267371770931701, 106.74632781146717]
+    ]).addTo(mymap);
+
+    var circle = L.circle([-6.2634471419164095, 106.75042622650905], {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 100
+    }).addTo(mymap);
+
+    var polyline = L.polyline([
+        [-6.2634471419164095, 106.75042622650905],
+        [-6.26045032652333, 106.74433224812216],
+        [-6.261090217375215, 106.74413912908878],
+        [-6.261292849314851, 106.74695008390806],
+    ],{
+        color: 'green',
+    }).addTo(mymap)
+
+    polyline.bindTooltip("my tooltip text").openTooltip();
+
+    circle.bindPopup("Ini Rumah Saya Pak.. ").openPopup();
+</script>
+{% endblock extra_footer %}
