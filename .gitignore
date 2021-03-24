@@ -1,0 +1,9 @@
+.pytest_cache/*
+.vscode
+*/__pycache__
+db.sqlite3
+static/ckeditor
+*/migrations
+/media
+.env
+env/
