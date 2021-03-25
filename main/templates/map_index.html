@@ -19,39 +19,47 @@
 {% block extra_footer %}
 <script>
     var mymap = L.map('mapid').setView([-6.2634471419164095, 106.75042622650905], 13);
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoiZmlrYXJjaGFtaWlpaW0iLCJhIjoiY2ttbjE2dWc3MXFmaDJ2azVvY2JtMGE1MCJ9.wMqW24OqNms9mzEEp74mzg', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'sk.eyJ1IjoiZmlrYXJjaGFtaWlpaW0iLCJhIjoiY2ttbjE2dWc3MXFmaDJ2azVvY2JtMGE1MCJ9.wMqW24OqNms9mzEEp74mzg'
-}).addTo(mymap);
-
-    var polygon = L.polygon([
-        [-6.2634471419164095, 106.75042622650905],
-        [-6.263223181218389, 106.74264782099763],
-        [-6.267371770931701, 106.74632781146717]
-    ]).addTo(mymap);
-
-    var circle = L.circle([-6.2634471419164095, 106.75042622650905], {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5,
-        radius: 100
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoiZmlrYXJjaGFtaWlpaW0iLCJhIjoiY2ttbjE2dWc3MXFmaDJ2azVvY2JtMGE1MCJ9.wMqW24OqNms9mzEEp74mzg', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'sk.eyJ1IjoiZmlrYXJjaGFtaWlpaW0iLCJhIjoiY2ttbjE2dWc3MXFmaDJ2azVvY2JtMGE1MCJ9.wMqW24OqNms9mzEEp74mzg'
     }).addTo(mymap);
 
-    var polyline = L.polyline([
-        [-6.2634471419164095, 106.75042622650905],
-        [-6.26045032652333, 106.74433224812216],
-        [-6.261090217375215, 106.74413912908878],
-        [-6.261292849314851, 106.74695008390806],
-    ],{
-        color: 'green',
-    }).addTo(mymap)
+    var soeta_kualanamu = L.polygon([
+        [-6.125556, 106.655830],
+        [3.633825, 98.877304],
+        [-7.786086, 110.431435]
+    ]).addTo(mymap);
 
-    polyline.bindTooltip("my tooltip text").openTooltip();
+    // var popup_soeta = L.popup()
+    //     .setLatLng([-6.125556, 106.655830])
+    //     .setContent('Soekarno')
+    //     .openOn(mymap);
 
-    circle.bindPopup("Ini Rumah Saya Pak.. ").openPopup();
+    // var popup_kualanamu = L.popup()
+    //     .setLatLng([3.633825, 98.877304])
+    //     .setContent('Kualanamu')
+    //     .openOn(mymap);
+
+    // var popup_jogja = L.popup()
+    //     .setLatLng([-7.786086, 110.431435])
+    //     .setContent('Jogjakarta')
+    //     .openOn(mymap);
+
+    var popup_soeta = L.marker([-6.125556, 106.655830],); //opacity may be set to zero
+    popup_soeta.bindTooltip("Soekarno Hatta", {permanent: true});
+    popup_soeta.addTo(mymap);
+
+    var popup_kualanamu = L.marker([3.633825, 98.877304],); //opacity may be set to zero
+    popup_kualanamu.bindTooltip("Kualanamu", {permanent: true});
+    popup_kualanamu.addTo(mymap);
+
+    var popup_jogja = L.marker([-7.786086, 110.431435],); //opacity may be set to zero
+    popup_jogja.bindTooltip("Jogjakarta", {permanent: true});
+    popup_jogja.addTo(mymap);
+
 </script>
 {% endblock extra_footer %}
